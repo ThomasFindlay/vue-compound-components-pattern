@@ -7,9 +7,9 @@
         <Tab id="settings">Settings</Tab>
       </div>
       <div :class="$style.section">
-        <TabPanel id="home">Home panel</TabPanel>
-        <TabPanel id="profile">Profile panel</TabPanel>
-        <TabPanel id="settings">Settings panel</TabPanel>
+        <TabPanel id="home">Home content</TabPanel>
+        <TabPanel id="profile">Profile content</TabPanel>
+        <TabPanel id="settings">Settings content</TabPanel>
       </div>
     </Tabs>
   </div>

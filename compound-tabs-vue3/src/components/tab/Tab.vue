@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="[$style.tabBtn, tabState.activeTab === id && $style.tabActive]"
+    :class="[$style.tabBtn, activeTab === id && $style.tabActive]"
     :id="`tab-${id}`"
     @click.prevent="activateTab(id)"
   >
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { useTabs } from './Tabs'
 export default {
   props: {
     id: {
@@ -16,7 +17,14 @@ export default {
       required: true,
     },
   },
-  inject: ['activateTab', 'tabState'],
+  setup() {
+    const { activeTab, activateTab } = useTabs()
+
+    return {
+      activeTab,
+      activateTab,
+    }
+  },
 }
 </script>
 

@@ -1,10 +1,12 @@
 <template>
-  <div :id="`tab-panel-${id}`" v-show="tabState.activeTab === id">
+  <div :id="`tab-panel-${id}`" v-show="activeTab === id">
     <slot />
   </div>
 </template>
 
 <script>
+import { useTabs } from './Tabs'
+
 export default {
   props: {
     id: {
@@ -12,7 +14,13 @@ export default {
       required: true,
     },
   },
-  inject: ['tabState'],
+  setup() {
+    const { activeTab } = useTabs()
+
+    return {
+      activeTab,
+    }
+  },
 }
 </script>
 

@@ -1,7 +1,6 @@
 <template>
   <button
     :class="[$style.tabBtn, tabState.activeTab === id && $style.tabActive]"
-    :id="`tab-${id}`"
     @click.prevent="activateTab(id)"
   >
     <slot />
@@ -28,6 +27,7 @@ export default {
   border: none;
   border-bottom: 1px solid #ccc;
   padding: 0.4rem 0.6rem;
+
   &:hover {
     background-color: #eee;
   }

@@ -1,9 +1,9 @@
+<template>
+  <div>
+    <slot />
+  </div>
+</template>
 <script>
-import { ref, provide, inject } from 'vue'
-
-const TABS_SYMBOL = Symbol('TABS')
-export const useTabs = () => inject(TABS_SYMBOL)
-
 export default {
   props: {
     initialActiveTab: {
@@ -11,17 +11,26 @@ export default {
       required: true,
     },
   },
-  setup(props, { slots }) {
-    const activeTab = ref(props.initialActiveTab)
-
-    const activateTab = (id) => (activeTab.value = id)
-
-    provide(TABS_SYMBOL, {
-      activeTab,
-      activateTab,
+  data() {
+    return {
+      activeTab: this.initialActiveTab,
+    }
+  },
+  provide() {
+    let tabState = {}
+    Object.defineProperty(tabState, 'activeTab', {
+      enumerable: true,
+      get: () => this.activeTab,
     })
-
-    return () => slots.default()
+    return {
+      tabState,
+      activateTab: this.activateTab,
+    }
+  },
+  methods: {
+    activateTab(id) {
+      this.activeTab = id
+    },
   },
 }
 </script>

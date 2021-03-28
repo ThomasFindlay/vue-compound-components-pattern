@@ -3,6 +3,7 @@
     <slot />
   </div>
 </template>
+
 <script>
 export default {
   props: {
@@ -22,6 +23,7 @@ export default {
       enumerable: true,
       get: () => this.activeTab,
     })
+
     return {
       tabState,
       activateTab: this.activateTab,
